@@ -26,5 +26,12 @@ function getCouponById(couponId)
 
 function obtainNewCoupon(userId) {
     //TODO insert database.
+    var newId = getnewId();
+    var coupon = {
+        userId = userId,
+        items = [
+            { id = newId, name = 'couponA', ccy = 'hkd', available = 100, spent = 0, status = 'new', expiry = '', updateTime = new Date() },            
+        ],   
+    };    
     return coupon;
 }
