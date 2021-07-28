@@ -8,22 +8,21 @@ router.get('/getActivities', function (req, res) {
     res.status(200).json(result);
 });
 
+router.post('/getQuestionnaire', function (req, res) {
+    var userId = req.body.userId;
+    var questionnaire = userManager.getQuestionnaire(userId, today);    
+    var result = responseManager.createSuccessResponse(questionnaire);
+    res.status(200).json(result);
+});
+
 router.post('/saveQuestionnaire', function (req, res) {
     var userId = req.body.userId;
-    var today = //TODO
-    
+    var success = userManager.trySaveQuestionnaire(userId, req.body.questionnaire);
+    if (success == true)
+        userManager.obtainNewCoupon(userId);
+
     var result = responseManager.createSuccessResponse(xxx);
     res.status(200).json(result);
 });
-// router.get('/:id', function (req, res) {
-//     let found = data.find(function (item) {
-//         return item.id === parseInt(req.params.id);
-//     });
-//     if (found) {
-//         res.status(200).json(found);
-//     } else {
-//         res.sendStatus(404);
-//     }
-// });
 
 module.exports = router;
