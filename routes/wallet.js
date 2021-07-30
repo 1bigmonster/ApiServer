@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const responseManager = require('../services/responseManager').default;
+const responseManager = require('../services/responseManager');
 const couponManager = require('../services/couponManager');
 const walletManager = require('../services/walletManager');
 
