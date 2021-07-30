@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const responseManager = require('../services/responseManager');
+const responseManager = require('../services/responseManager').default;
 const couponManager = require('../services/couponManager');
 const walletManager = require('../services/walletManager');
 
@@ -13,7 +13,8 @@ router.post('/getCoupons', function (req, res) {
 
 router.post('/getWallet', function (req, res) {
     var userId = req.body.userId;
-    var wallet = walletManager.getWalletByUser(userId);
+    let manager = new walletManager();
+    var wallet = manager.getWalletByUser(userId);
     var result = responseManager.createSuccessResponse(wallet);
     res.status(200).json(result);
 });
@@ -22,7 +23,8 @@ router.post('/spendCoupon', function (req, res) {
     var senderId = req.body.senderId;
     var receiverId = req.body.receiverId;
     var couponId = req.body.couponId;
-    var coupon = couponManger.getCouponById(couponId);
+    let manager = new couponManager();
+    var coupon = manager.getCouponById(couponId);
     if (coupon.status == 'new' && coupon.ownerId == senderId) {
         coupon.status = 'used';
         coupon.updateTime = new Date();
