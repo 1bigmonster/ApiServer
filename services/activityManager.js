@@ -10,9 +10,12 @@ function getActivities() {
     return activities;
 }
 
-function getShopListByActivity(activityId)
-{
+function getShopListByActivity(activityId) {
     //TODO redis
     //return shop details
+    var shops = [
+        { id: 1, name: 'shopA', phoneNumber: '2345678', description: 'sell lunch box' },
+        { id: 2, name: 'shopB', phoneNumber: '2345678', description: 'yoga class' },
+    ];        
     return shops;
 }
